@@ -2,6 +2,8 @@ package com.rdo.octo.drivytest
 
 import com.rdo.octo.drivytest.cars.ListComponent
 import com.rdo.octo.drivytest.cars.ListModule
+import com.rdo.octo.drivytest.detail.DetailComponent
+import com.rdo.octo.drivytest.detail.DetailModule
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -13,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 interface MainComponent {
 
     fun plus(module: ListModule): ListComponent
+    fun plus(module: DetailModule): DetailComponent
 }
 
 @Module

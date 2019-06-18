@@ -1,12 +1,15 @@
 package com.rdo.octo.drivytest
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cell_car.view.*
 
-class CarAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CarAdapter(private val onItemClick: (CarViewModel, View, View, View, View, View) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var cars = emptyList<CarViewModel>()
 
@@ -31,6 +34,7 @@ class CarAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val car = cars[position]
         with(holder.itemView) {
+            cellContainer.setOnClickListener { onItemClick(car, nameTextView, carImageView, priceTextView, ratingCountTextView, ratingBar) }
             Picasso.get()
                 .load(car.pictureUrl)
                 .into(carImageView)
